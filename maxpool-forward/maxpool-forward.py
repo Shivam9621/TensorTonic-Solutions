@@ -2,6 +2,7 @@ def maxpool_forward(X, pool_size, stride):
     """
     Compute the forward pass of 2D max pooling.
     """
+
     H = len(X)
     W = len(X[0])
 
@@ -13,15 +14,13 @@ def maxpool_forward(X, pool_size, stride):
     for i in range(H_out):
         row = []
         for j in range(W_out):
-            max_val = float('-inf')
+            maximum = float('-inf')
 
-            for r in range(pool_size):
-                for c in range(pool_size):
-                    val = X[i * stride + r][j * stride + c]
-                    if val > max_val:
-                        max_val = val
+            for a in range(pool_size):
+                for b in range(pool_size):
+                    maximum = max(maximum, X[i * stride + a][j * stride + b])
 
-            row.append(max_val)
+            row.append(maximum)
 
         output.append(row)
 
